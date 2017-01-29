@@ -1,0 +1,12 @@
+a:link {
+    text-decoration: none;
+    color: #00e;
+}
+a:visited {
+    text-decoration: none;
+    color: #00e;
+}
+a:active {
+    text-decoration: underline;
+    color: #00e;
+}

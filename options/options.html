@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>M!Service Options</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        body {
+            font-family: "Helvetica";
+        }
+        h1 {
+            font-size: 25px;
+        }
+        label {
+            display: block;
+            padding-top: 10px;
+        }
+        form {
+            margin: 10px 0;
+        }
+        button {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>M!Service Login:</h1>
+    <form id="login-form">
+        <label>Username:</label>
+        <input type="text" id="username" autocomplete="off">
+
+        <label>Password:</label>
+        <input type="password" id="password" autocomplete="off">
+    </form>
+
+    <button form="login-form" id="save">Save</button>
+
+    <script src="options.js"></script>
+</body>
+</html>
