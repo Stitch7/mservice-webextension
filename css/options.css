@@ -1,0 +1,34 @@
+body {
+    font-family: "Helvetica";
+}
+h1 {
+    font-size: 25px;
+    font-weight: normal;
+}
+label {
+    display: block;
+    padding-top: 10px;
+}
+form {
+    margin: 0px 0 10px 0px;
+}
+button {
+    font-size: 17px;
+}
+#buttons {
+    margin-top: 20px;
+}
+#banner {
+    width: 250px;
+    margin: 10px 0;
+    font-size: 15px;
+    color: #fff;
+}
+#banner.success {
+    padding: 7px;
+    background-color: #2ecc71;
+}
+#banner.error {
+    padding: 7px;
+    background-color: #e74c3c;
+}

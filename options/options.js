@@ -5,6 +5,8 @@ function saveOptions() {
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
 
+    var $banner = $('#banner');
+
     $.ajax({
         url: mserviceUrl + 'test-login',
         type: 'GET',
@@ -17,15 +19,17 @@ function saveOptions() {
                 username: username,
                 password: password
             }, function() {
-                alert('Login erfolgreich!');
+                $banner.removeClass('error').addClass('success').html('Login erfolgreich!<br/>Bitte lade ggf. den Forums Tab neu.');
             });
         },
         error: function() {
-            alert('Login fehlgeschlagen!');
+            $banner.removeClass('success').addClass('error').html('Login fehlgeschlagen!');
             browser.storage.local.remove(['username', 'password']);
             document.getElementById('password').value = '';
         }
     });
+
+    return false;
 }
 
 function restoreOptions() {
@@ -40,4 +44,10 @@ function restoreOptions() {
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
-document.getElementById('save').addEventListener('click', saveOptions);
+//document.getElementById('save').addEventListener('click', saveOptions);
+//document.getElementById('save').addEventListener('submit', saveOptions);
+
+$('#login-form').submit(function(event) {
+    saveOptions();
+    event.preventDefault();
+});

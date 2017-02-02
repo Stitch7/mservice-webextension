@@ -203,7 +203,7 @@ function isBoardMode(mode) {
         return true;
     }
 
-    var modeRegExStr = '.*\\?mode=(.+?)\\&.*';
+    var modeRegExStr = '.*\\?mode=(.+?)(\\&.*)?$';
     var modeRegEx = new RegExp(modeRegExStr, 'g');
     var modeRegExResult = modeRegEx.exec(currentUrl);
     var currentMode = modeRegExResult[1];
@@ -231,7 +231,7 @@ function route() {
 function showLoginMessage() {
     var message = 'Du bist nicht am M!Service angemeldet. ';
     var optionsUrl = browser.extension.getURL('options/options.html');
-    var $optionsLink = $('<a>').attr('href', optionsUrl).append('M!Service Login');
+    var $optionsLink = $('<a>').attr('href', optionsUrl).attr('target', 'blank').append('M!Service Login');
 
     if (isBoardMode('login')) {
         var $topTable = $($('table').get(1));
