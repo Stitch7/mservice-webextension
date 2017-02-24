@@ -3,7 +3,7 @@
   "name": "M!Service",
   "description": "Synchronisiert Maniac-Forum Gelesen-Status zwischen deinen Geräten.",
   "homepage_url": "https://github.com/Stitch7/mservice-webextension",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Christopher Reitz",
   "icons": {
     "16": "icons/icon16.png",
@@ -28,8 +28,7 @@
     "chrome_style": true
   },
   "web_accessible_resources": [
-    "images/loading.gif",
-    "options/options.html"
+    "images/loading.gif"
   ],
   "content_scripts": [{
     "all_frames": true,

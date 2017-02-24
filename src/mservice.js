@@ -229,10 +229,7 @@ function route() {
 }
 
 function showLoginMessage() {
-    var message = 'Du bist nicht am M!Service angemeldet. ';
-    var optionsUrl = browser.extension.getURL('options/options.html');
-    var $optionsLink = $('<a>').attr('href', optionsUrl).attr('target', 'blank').append('M!Service Login');
-
+    var message = 'M!Service ist nicht aktiv, logge dich mit deinem Benutzeraccount in den Einstellungen der Browser Extension ein.';
     if (isBoardMode('login')) {
         var $topTable = $($('table').get(1));
         var colspan = $topTable.find('tr').last().find('td').length;
@@ -240,18 +237,18 @@ function showLoginMessage() {
         $noLoginTd = $('<td>')
             .attr('id', 'norm')
             .attr('colspan', colspan)
-            .css('text-align', 'center');
-        $noLoginTd.append(message).append($optionsLink);
+            .css('text-align', 'center')
+            .append(message);
         $noLoginTr.append($noLoginTd);
         $topTable.append($noLoginTr);
     } else if (isBoardMode('threadlist')) {
         var $topTable = $('#boardlistform table');
-        var colspan = $topTable.find('tr').last().find('td').length;
+        var colspan = $topTable.find('tr').last().find('td').length + 1;
         var $noLoginTr = $('<tr>').addClass('bg2');
         $noLoginTd = $('<td>')
             .attr('id', 'norm')
-            .attr('colspan', colspan);
-        $noLoginTd.append($optionsLink);
+            .attr('colspan', colspan)
+            .append(message);
         $noLoginTr.append($noLoginTd);
         $topTable.prepend($noLoginTr);
     }
