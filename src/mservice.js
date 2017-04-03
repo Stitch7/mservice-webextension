@@ -2,8 +2,13 @@ var browser = chrome;
 var mserviceUrl = browser.runtime.getManifest().permissions[0];
 var currentUrl = window.location.href;
 
-var colorIsRead = 'purple';
-var colorIsNotRead = 'blue';
+var isClassicTheme = $('link').attr('href') === 'css/pxmclassic.css';
+var colorIsRead = isClassicTheme ? '#551188' : '#63728F';
+var colorIsNotRead = isClassicTheme ? '#0000EE' : '#b70000';
+
+$('a:link').css('color', colorIsNotRead);
+$('a:visited').css('color', colorIsNotRead);
+$('a:active').css('color', colorIsNotRead);
 
 function loginPage() {
     if ($('.mservice').length) {
@@ -59,7 +64,7 @@ function loadThreadList() {
                 threads[thread.id] = thread;
             }
 
-            $('img', $('#threadlist')).each(function () {
+            $('img', $('#threadlist')).each(function() {
                 var $image = $(this);
                 var $messageA = $image.next();
                 var $lastMessageContainerAs = $messageA.next().find('a');
@@ -79,24 +84,24 @@ function loadThreadList() {
                 if (thread && thread.isRead) {
                     messageAColor = colorIsRead;
                 }
-                $messageA.css({'color': messageAColor});
+                $messageA.css({ 'color': messageAColor });
 
                 var lastMessageContainerAsColor = colorIsNotRead;
                 if (thread && thread.isRead && thread.lastMessageIsRead) {
                     lastMessageContainerAsColor = colorIsRead;
                 }
-                $lastMessageContainerAs.css({'color': lastMessageContainerAsColor});
+                $lastMessageContainerAs.css({ 'color': lastMessageContainerAsColor });
 
-                $messageA.click(function () {
-                    $messageA.css({'color': colorIsRead});
+                $messageA.click(function() {
+                    $messageA.css({ 'color': colorIsRead });
                 });
 
-                $answersA.click(function () {
-                    $messageA.css({'color': colorIsRead});
+                $answersA.click(function() {
+                    $messageA.css({ 'color': colorIsRead });
                 });
 
-                $lastMessageA.click(function () {
-                    $lastMessageContainerAs.css({'color': colorIsRead});
+                $lastMessageA.click(function() {
+                    $lastMessageContainerAs.css({ 'color': colorIsRead });
                 });
             });
 
@@ -144,7 +149,7 @@ function loadThread() {
                 messages[message.messageId] = message;
             }
 
-            $('li').each(function () {
+            $('li').each(function() {
                 var $a = $(this).find('span a');
                 var messageIdRegExResult = /pxmboard.php\?mode=message&brdid=\d+&msgid=(\d+)/.exec($a.attr('href'));
                 if (!messageIdRegExResult) {
@@ -157,10 +162,10 @@ function loadThread() {
                 if (message && message.isRead) {
                     color = colorIsRead;
                 }
-                $a.css({'color': color});
+                $a.css({ 'color': color });
 
-                $a.click(function () {
-                    $a.css({'color': colorIsRead});
+                $a.click(function() {
+                    $a.css({ 'color': colorIsRead });
                 });
             });
             $loadingImage.remove();
@@ -254,7 +259,7 @@ function showLoginMessage() {
     }
 }
 
-browser.storage.local.get(['username', 'password'], function (items) {
+browser.storage.local.get(['username', 'password'], function(items) {
     var username, password;
     if (items[0]) {
         username = items[0].username;
@@ -272,8 +277,8 @@ browser.storage.local.get(['username', 'password'], function (items) {
     $.ajaxSetup({
         type: 'GET',
         dataType: 'json',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader ('Authorization', 'Basic ' + btoa(username + ':' + password));
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa(username + ':' + password));
         }
     });
 
